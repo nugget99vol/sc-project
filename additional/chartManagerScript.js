@@ -128,8 +128,7 @@ function renderPieChart() {
         { value: 500, name: 'This' },
         { value: 400, name: 'is' },
         { value: 300, name: 'an' },
-        { value: 200, name: 'unfinished' },
-        { value: 100, name: 'Prototype' }
+        { value: 200, name: 'Prototype' }
       ],
       emphasis: {
         itemStyle: {
