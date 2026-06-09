@@ -1,0 +1,70 @@
+/*character encoding*/
+@charset "UTF-8";
+/* Simply for better visuals currently*/
+/*page bg*/
+body{background-color:#d7d7d7;}
+/*targets <hr>
+Pushes the line 64 pixels down from elements above it
+Removes the default 3D browser border
+Creates a 1px light grey bottom border.
+*/
+body hr{
+  margin-top:64px;
+  border:none;
+  border-bottom:1px solid #ccc;
+}
+/*targets <button>
+Adds spacing inside the button. 8 pixels on the top/bottom. 24 pixels on the left/right.
+removes border
+border-radius > rounds border
+*/
+body button {
+  padding: 8px 24px;
+  background-color: #369;
+  color: #fefefe;
+  border: none;
+  border-radius: 20px;
+}
+/*applies when button is hovered
+changes color and makes cursor a pointer*/
+body button:hover {
+  background-color: #47a;
+  cursor: pointer;
+}
+/*targets <input>*/
+body input {
+  padding: 8px 12px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  font-size: 16px;
+}
+/*targets <div>*/
+body div {
+  padding: 16px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+body div.background-red {
+  background-color: #fdd;
+}
+body div.background-yellow {
+  background-color: #ffa;
+}
+body div.background-blue {
+  background-color: #adf;
+}
+/*targets output-06*/
+body #output-06 {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+body #output-06 .output-06-item {
+  width: 20px;
+  height: 20px;
+  margin: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #aef;
+}/*# sourceMappingURL=style.css.map */

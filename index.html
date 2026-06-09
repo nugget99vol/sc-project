@@ -1,0 +1,246 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<title>専修大学技術とメディア</title>
+			<!--Point to file-->
+		<link rel="stylesheet" href="./additional/style.css"/>
+		<link rel="stylesheet" href="./additional/navStyle.css"/>
+
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+
+	</head>
+	<body>
+	<!--if no JS-->
+	<noscript>
+			<div>
+			<!--Paragraph-->
+			<p>
+			<!--Strong warning-->
+				<strong>[Warning]</strong>
+				<br>
+				JavaScript required. Enable JavaScript or switch to a newer Browser.
+				JavaScriptは必要です。
+			</p>
+			<hr>
+				<p>
+					This website needs javascript
+					<br>
+					If you want the source code, here it is: UNIMPLEMENTED
+					<!--anchor element, hyperlink-->
+					<!--<a href="https://gitlab.com/name/githubname" title="Source code" target="_blank"> or just look to spot my mistakes</a><i>italics</i>.-->
+				</p>
+			</div>
+		</noscript>
+
+
+
+		<!--hX Heading Level X text-->
+	<h1>[PROTOTYPE - プロトタイプ]</h1>
+		<!--<button id="button0">button 0</button>-->
+		<!--horizontal rule line break-->
+		<hr>
+
+
+  <nav>
+    <h2 style="margin: 0;">Prototype Thing</h3>
+						<!--div doesn't do anything by itself and groups things together-->
+    <div class="divisionClassName-NavigationLinks">
+      <button id="buttonName-FileManager" class="active" data-attributeNamePanel="panelNameFileManager">File Manager Screen</button>
+      <button id="buttonName-DataManager" data-attributeNamePanel="panelNameDataManager">Data Manager Screen</button>
+      <button id="buttonName-ChartManager" data-attributeNamePanel="panelNameChartManager">Chart Manager Screen</button>
+    </div>
+  </nav>
+
+
+<!-- Each div is one "screen". The id matches the button's data-attributeNamePanel value exactly.
+     The class "panel" is shared by all of them so CSS and JS can target them as a group. -->
+
+
+<!--class name: panel-->
+<div id="panelNameFileManager" class="panel">
+  <h2>File Manager</h2>
+
+  <!-- SECTION 1: Upload a new CSV file -->
+  <form id="uploadForm">
+    <label for="myFile">Select CSV file(s):</label>
+    <input type="file" id="myFile" accept=".csv" multiple>
+    <input type="submit" value="Upload">
+  </form>
+
+  <hr>
+
+  <!-- SECTION 2: All uploaded files -->
+  <h3>All Uploaded Files</h3>
+  <div id="allFilesList">No files uploaded yet.</div>
+
+  <hr>
+
+  <!-- SECTION 3: Create a new group -->
+  <h3>Groups</h3>
+  <input type="text" id="groupNameInput" placeholder="New group name...">
+  <button id="createGroupButton">Create Group</button>
+
+  <!-- Dropdown to pick which group is active -->
+  <br><br>
+  <label for="groupSelect">Active Group:</label>
+  <select id="groupSelect">
+    <option value="">-- No group selected --</option>
+  </select>
+		  <button id="deleteGroupButton">Delete Group UNFINISHED</button>
+
+
+  <hr>
+
+  <!-- SECTION 4: Shows the files inside the currently selected group -->
+  <h3>Files in Active Group</h3>
+  <div id="activeGroupView">Select a group to see its files.</div>
+
+
+<!-- 
+  
+
+		<!-form gets user input->
+		<form id="uploadForm">
+    <label for="myFile">Select file(s):</label>
+    <input type="file" id="myFile" name="filename"
+     accept=".csv"
+     multiple>
+    <input type="submit" value="Read and Save">
+ 	</form>
+
+
+  <h3>Stored/Current CSV Data:</h3>
+  <div id="output">No data loaded yet.</div>
+
+		<form action="/upload-endpoint" method="POST" enctype="multipart/form-data">
+  <label for="myFile">Select file(s) / ファイルを選んでください:</label>
+  <input type="file" id="myFile" name="filename"
+			accept=".csv, text/csv, application/vnd.ms-excel"
+   multiple>
+  <input type="submit" value="Upload">
+		</form>
+
+
+-->
+
+</div>
+
+
+<div id="panelNameDataManager" class="panel">
+  <h2>Data Manager</h2>
+
+  <!-- Shows which group is currently loaded -->
+  <p>Active Group: <strong id="dataManagerGroupName">None</strong></p>
+  <button id="loadGroupDataButton">Load Active Group Data</button>
+
+  <hr>
+
+  <!-- FIND: searches all cells for a value -->
+  <h3>Find</h3>
+  <input type="text" id="findInput" placeholder="Search all cells...">
+
+  <hr>
+
+  <!-- FILTER: show only rows where a column matches a value -->
+  <h3>Filter</h3>
+  <!-- Column dropdown gets built by JS once data is loaded -->
+  <select id="filterColumnSelect">
+    <option value="">-- Select column --</option>
+  </select>
+  <select id="filterOperatorSelect">
+    <option value="contains">contains</option>
+    <option value="equals">equals</option>
+    <option value="greater">greater than</option>
+    <option value="less">less than</option>
+  </select>
+  <input type="text" id="filterValueInput" placeholder="Value...">
+  <button id="addFilterButton">Add Filter</button>
+
+  <!-- AND / OR toggle -->
+  <div id="filterModeContainer">
+    Match:
+    <label><input type="radio" name="filterMode" value="AND" checked> ALL (AND)</label>
+    <label><input type="radio" name="filterMode" value="OR"> ANY (OR)</label>
+  </div>
+
+  <!-- Active filters are listed here -->
+  <div id="activeFiltersList">No filters applied.</div>
+
+  <hr>
+
+  <!-- SORT: pick a column and direction -->
+  <h3>Sort</h3>
+  <select id="sortColumnSelect">
+    <option value="">-- Select column --</option>
+  </select>
+  <select id="sortDirectionSelect">
+    <option value="asc">Ascending (A → Z)</option>
+    <option value="desc">Descending (Z → A)</option>
+  </select>
+  <button id="applySortButton">Apply Sort</button>
+  <button id="clearSortButton">Clear Sort</button>
+
+  <hr>
+
+  <!-- The table renders here -->
+  <h3>Data</h3>
+  <div id="dataManagerOutput">Load a group to see data.</div>
+
+</div>
+
+
+
+
+<div id="panelNameChartManager" class="panel">
+  <h2>Chart Manager</h2>
+
+  <p>This uses data from Data Manager. Load a group there first.</p>
+
+
+  <hr>
+
+  <!-- Chart type selector — only pie works now, others are placeholders -->
+  <h3>Chart Type</h3>
+  <select id="chartTypeSelect">
+    <option value="pie">Pie Chart (count by column)</option>
+    <option value="bar" disabled>Bar Chart (coming soon)</option>
+    <option value="line" disabled>Line Chart (coming soon)</option>
+  </select>
+
+  <hr>
+
+  <!-- Pie chart options — shown when pie is selected -->
+  <div id="pieOptions">
+    <h3>Pie Chart Settings</h3>
+    <label for="pieColumnSelect">Count values in column:</label>
+    <select id="pieColumnSelect">
+      <option value="">-- Load data first then click render chart --</option>
+    </select>
+    <button id="renderChartButton">Render Chart</button>
+  </div>
+
+  <hr>
+
+  <!-- ECharts renders into this div — it needs a fixed height -->
+  <div id="chartContainer" style="width: 100%; height: 500px;"></div>
+
+</div>
+
+
+
+
+
+
+
+	</body>
+			<!--javascript script-->
+		<script src="./additional/script.js"></script>
+    			<!--<script src="./additional/fileRetentionScript.js"></script>-->
+		<script src="./additional/navigationManagerScript.js"></script>
+		<script src="./additional/fileManagerScript.js"></script>
+		<script src="./additional/dataManagerScript.js"></script>
+		<script src="./additional/chartManagerScript.js"></script>
+</html>

@@ -1,0 +1,9 @@
+/* Minimum necessary to function. Active button looks darker */
+.divisionClassName-NavigationLinks button.active{
+  background-color: #224; /* darker than the default */
+  outline: 2px solid #fff;
+}
+
+/*
+I don't think I needed this...
+*/
